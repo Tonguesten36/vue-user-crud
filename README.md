@@ -1,6 +1,6 @@
 # vue-user-crud
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the frontend app for the [UserCRUD](https://github.com/Tonguesten36/user-crud)
 
 ## Recommended IDE Setup
 
