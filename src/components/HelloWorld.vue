@@ -12,8 +12,12 @@ defineProps({
     <h1 class="green">{{ msg }}</h1>
     <h3>
       You’ve successfully created a project with
+      <br>
       <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+    </h3>
+    <h3 id="heading3-login-or-regis">
+      You can start by logging in, or create a new account.
     </h3>
   </div>
 </template>
@@ -33,6 +37,11 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+#heading3-login-or-regis {
+  padding-top: 10px;
+  font-size: 0.9rem;
 }
 
 @media (min-width: 1024px) {
