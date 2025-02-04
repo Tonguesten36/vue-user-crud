@@ -1,89 +1,55 @@
 <script setup>
-import { ref } from 'vue'
+import {ref} from 'vue';
 
-const email = ref('')
-const password = ref('')
-const errorMessage = ref('')
+const email = ref('');
+const password = ref('');
+const errorMessage = ref('');
 
 const handleLogin = () => {
   if (!email.value || !password.value) {
-    errorMessage.value = 'Please fill in all fields'
-    return
+    errorMessage.value = 'Please fill in all fields';
+  } else {
+    errorMessage.value = '';
+    console.log({email: email.value, password: password.value});
   }
-
-  // Return inputs
-  console.log({email: email.value, password: password.value})
-}
+};
 </script>
 
 <template>
-  <div class="form-login">
-    <h2 id="header-login">Login</h2>
-
-    <form @submit.prevent="handleLogin">
-      <div class="field">
-        <label for="email" class="field-label">Email</label>
-        <input
+  <b-card class="p-4" style="max-width: 400px; width: 100%" header="Login">
+    <b-form @submit.prevent="handleLogin">
+      <b-form-group label="Email" label-for="email">
+        <b-form-input
             id="email"
             v-model="email"
-            size="30"
-            class="field-input"
+            type="email"
+            required
+            placeholder="Enter your email"
+            class="b-form-inputs"
         />
-      </div>
+      </b-form-group>
 
-      <div class="field">
-        <label for="password" class="field-label">Password</label>
-        <input
-            type="password"
+      <b-form-group label="Password" label-for="password">
+        <b-form-input
             id="password"
             v-model="password"
-            size="30"
-            class="field-input"
+            type="password"
+            required
+            placeholder="Enter your password"
+            class="b-form-inputs"
         />
-      </div>
+      </b-form-group>
 
-      <button
-          type="submit"
-          class="form-submit-button"
-      >
-        Login
-      </button>
-      <p v-if="errorMessage" id="error-msg">{{ errorMessage }}</p>
-    </form>
-  </div>
+      <b-button type="submit" variant="primary" class="w-100">Login</b-button>
+    </b-form>
+    <b-alert v-if="errorMessage" variant="danger" show class="mt-3">
+      {{ errorMessage }}
+    </b-alert>
+  </b-card>
 </template>
 
-
 <style scoped>
-/* Optional styling */
-.form-login{
-  color: white;
-  background-color: #292929;
-  padding: 40px calc(var(--section-gap) / 2);
-
+.b-form-inputs{
+  margin-bottom: 20px;
 }
-
-#header-login{
-  font-size: 40px;
-  font-weight: bold;
-}
-
-#error-msg{
-  color: red;
-}
-
-.field{
-  padding-bottom: 10px;
-}
-
-.field-label{
-  display: block;
-}
-
-.form-submit-button{
-  margin-top: 15px;
-  font-size: 1.1rem;
-}
-
-
 </style>
