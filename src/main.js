@@ -9,13 +9,16 @@ import App from './App.vue'
 import LoginView from "@/components/authenticate/LoginView.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 import RegisterView from "@/components/authenticate/RegisterView.vue";
+import CrudView from "@/components/crud/CrudView.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', component: HelloWorld},
         {path: '/login', component: LoginView},
-        {path: '/register', component: RegisterView}
+        {path: '/register', component: RegisterView},
+        {path: '/crud/user', component: CrudView}
+
     ]
 });
 const app = createApp(App).use(createBootstrap()).use(router).mount('#app')
