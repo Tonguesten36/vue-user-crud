@@ -1,20 +1,38 @@
 <script setup>
 
-import ListComponent from "@/components/crud/UserListComponent.vue";
+import UserListComponent from "@/components/crud/UserListComponent.vue";
+import DeviceListComponent from "@/components/crud/DeviceListComponent.vue";
+
+import { ref } from 'vue'
+
+const currentTab = ref('UserListComponent')
+
+const tabs = {
+  "Users": UserListComponent,
+  "Push Device": DeviceListComponent
+}
+
+
 </script>
 
 <template>
   <b-container fluid class="d-flex">
     <b-container class="crud-sidebar">
       <b-container class="d-grid gap-5">
-        <b-button squared class="mx-lg-0" size="lg" style="text-align: left; ">Users</b-button>
-        <b-button squared class="mx-lg-0" size="lg" style="text-align: left; ">Push Device</b-button>
+        <b-button
+          v-for="(tabKey, tabComponent) in tabs"
+          :key="tabKey"
+          squared class="mx-lg-0" size="lg" style="text-align: left"
+          @click="currentTab=tabComponent"
+        >
+          {{tabComponent}}
+        </b-button>
       </b-container>
     </b-container>
     <b-container class="crud-list">
-      <component >
-        <ListComponent/>
-      </component>
+      <keep-alive>
+        <component :is="tabs[currentTab]"> </component>
+      </keep-alive>
     </b-container>
   </b-container>
 </template>

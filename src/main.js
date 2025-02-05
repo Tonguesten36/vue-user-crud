@@ -17,7 +17,7 @@ const router = createRouter({
         {path: '/', component: HelloWorld},
         {path: '/login', component: LoginView},
         {path: '/register', component: RegisterView},
-        {path: '/crud/user', component: CrudView}
+        {path: '/crud', component: CrudView}
 
     ]
 });

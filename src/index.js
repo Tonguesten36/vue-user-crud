@@ -21,7 +21,7 @@ const routes = [
         component: RegisterView
     },
     {
-        path: '/crud/user',
+        path: '/crud',
         name: 'CrudView',
         component: CrudView
     }
