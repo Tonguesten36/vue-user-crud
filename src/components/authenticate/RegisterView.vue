@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from 'vue';
+// TODO: Call APIs from localhost:8080/api/v1/auth/register
 
 const username = ref('');
 const email = ref('');

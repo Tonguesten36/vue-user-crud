@@ -71,7 +71,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import api from '@/api.js';
 
 interface User {
   id: number;
@@ -135,6 +136,14 @@ const editPasswordState = computed(() => {
   return editedUser.value && editedUser.value.password.length >= 8 ? true : null;
 });
 
+async function getAllUsers() {
+  try {
+    const response = await api.get('/user')
+    console.log(response)
+  } catch (e) {
+  }
+}
+
 function addUser() {
   console.log("newUser.value.roleId: ", newUser.value.roleId);
   console.log("roleState: ", roleState.value);
@@ -143,10 +152,27 @@ function addUser() {
   newUser.value.id = dummyData.value.length > 0 ? Math.max(...dummyData.value.map(u => u.id), 0) + 1 : 1;
 
   dummyData.value.push({ ...newUser.value });
-
-  console.log("New user added:", newUser.value);
-  newUser.value = { id: 0, username: '', email: '', password: '', roleId: undefined }; // Reset form fields
-  showAddUserModal.value = false;
+  // TODO: call /user (POST)
+  // try{
+  //   const response = await api.post('/user', {
+  //     "username": newUser.value.username,
+  //     "password": newUser.value.password,
+  //     "email": newUser.value.email,
+  //     "roles": [
+  //       {
+  //         "id": 1,
+  //         "name": "ROLE_USER"
+  //       }
+  //     ]
+  //   });
+  //
+    console.log("New user added:", newUser.value);
+    newUser.value = { id: 0, username: '', email: '', password: '', roleId: undefined }; // Reset form fields
+    showAddUserModal.value = false;
+  // }
+  // catch (e){
+  //   console.error(e)
+  // }
 }
 
 function openEditModal(user: User) {
@@ -186,6 +212,10 @@ function getRoleName(roleId: number) {
   const role = roles.value.find(r => r.roleId === roleId);
   return role ? role.roleName : 'Unknown';
 }
+
+onMounted(() => {
+  getAllUsers()
+})
 
 </script>
 

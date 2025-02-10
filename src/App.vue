@@ -5,6 +5,8 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
     <b-navbar-nav class="ml-auto">
+      <b-nav-item to="/public">Public</b-nav-item>
+      <b-nav-item to="/private">Private</b-nav-item>
       <b-nav-item to="/crud">CRUD API</b-nav-item>
       <div class="d-flex position-absolute end-0" style="margin-right: 20px">
         <b-nav-item to="/login" id="login-button">Login</b-nav-item>
